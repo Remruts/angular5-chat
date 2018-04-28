@@ -1,4 +1,7 @@
 <button (click)=login()> LOGIN </button>
+<button (click)=sendMessage()> Mandar mensaje </button>
 <div *ngIf=miUser>
 	{{miUser.nick}}
 </div>
+
+<li *ngFor='let msg of mensajes'> {{msg.content}}</li>
