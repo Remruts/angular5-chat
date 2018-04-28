@@ -14,29 +14,32 @@ io.on('connection',function(socket){
 
 	socket.on('login',(newUserData,callback) => {
 
-		newUserid = newID()
+		if (!userxsocket[socket.id]){
+			newUserid = newID()
 
-		newUser = {
-			"id":newUserid,
-			"nick":newUserData.nick,
-			"age":newUserData.age,
-			"city":newUserData.city
+			newUser = {
+				"id":newUserid,
+				"nick":newUserData.nick,
+				"age":newUserData.age,
+				"city":newUserData.city
+			}
+			callback(newUser)
+
+			users[newUserid] = newUser
+
+			socket.join('0') //unir al chat global
+
+			socket.join(newUserid) // hack re piola para no guardar tabla de ruteo
+
+			io.sockets.emit('updateChatLists',{"users":users,"groups":groups} )
+
+			userxsocket[socket.id] = newUserid
+
+			console.log('Login: ')
+			console.log(newUser)
+		} else {
+			console.log(socket.id + ' ya conectado');
 		}
-		callback(newUser)
-
-		users[newUserid] = newUser
-
-		socket.join('0') //unir al chat global
-
-		socket.join(newUserid) // hack re piola para no guardar tabla de ruteo
-
-		io.sockets.emit('updateChatLists',{"users":users,"groups":groups} )
-
-		userxsocket[socket.id] = newUserid
-
-		console.log('Login: ')
-		console.log(newUser)
-
 	})
 
 	socket.on('sendMessage',(aMessage) => {
@@ -69,11 +72,15 @@ io.on('connection',function(socket){
 	})
 
 	socket.on('disconnect', () => {
-		userid = userxsocket[socket.id]
-		console.log( users[userid].nick +' (id: ' + userid + ') disconnected')
-		delete userxsocket[socket.id]
-		delete users[userid]
-		io.sockets.emit('updateChatLists',{"users":users,"groups":groups} )
+		if (userxsocket[socket.id]){
+			userid = userxsocket[socket.id]
+			console.log( users[userid].nick +' (id: ' + userid + ') disconnected')
+			delete userxsocket[socket.id]
+			delete users[userid]
+			io.sockets.emit('updateChatLists',{"users":users,"groups":groups} )
+		} else {
+			console.log('socket disconnected, id: ' + socket.id)
+		}
 	})
 
 
