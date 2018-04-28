@@ -11,11 +11,11 @@ var userxsocket = {}
 io.on('connection',function(socket){
 
 	console.log("new connection, socket id: " + socket.id)
-	
+
 	socket.on('login',(newUserData,callback) => {
 
 		newUserid = newID()
-		
+
 		newUser = {
 			"id":newUserid,
 			"nick":newUserData.nick,
@@ -23,17 +23,18 @@ io.on('connection',function(socket){
 			"city":newUserData.city
 		}
 		callback(newUser)
-		
+
 		users[newUserid] = newUser
-		
+
 		socket.join('0') //unir al chat global
-		
+
 		socket.join(newUserid) // hack re piola para no guardar tabla de ruteo
-		
+
 		io.sockets.emit('updateChatLists',{"users":users,"groups":groups} )
 
 		userxsocket[socket.id] = newUserid
 
+		console.log('Login: ')
 		console.log(newUser)
 
 	})
@@ -45,14 +46,18 @@ io.on('connection',function(socket){
 	})
 
 
-	socket.on('createGroup', (newGroupName) => {
+	socket.on('createGroup', (newGroupName, callback) => {
 		newGroup = {
 			'name':newGroupName,
 			'id':newID()
 		}
 		socket.join(newGroup.id)
 		groups.push(newGroup)
+
+		callback(newGroup);
+
 		io.sockets.emit('updateChatLists',{"users":users,"groups":groups} )
+
 		console.log("new group created")
 		console.log(newGroup)
 	})
@@ -65,15 +70,14 @@ io.on('connection',function(socket){
 
 	socket.on('disconnect', () => {
 		userid = userxsocket[socket.id]
+		console.log( users[userid].nick +' (id: ' + userid + ') disconnected')
 		delete userxsocket[socket.id]
 		delete users[userid]
 		io.sockets.emit('updateChatLists',{"users":users,"groups":groups} )
-		console.log( userid + ' disconnect')
 	})
 
 
 })
-
 
 
 function newID(){
@@ -81,12 +85,9 @@ function newID(){
 	return nextID.toString()
 }
 
-
-
 http.listen(1337, function(){
   console.log('listening on *:1337');
 });
-
 
 
 

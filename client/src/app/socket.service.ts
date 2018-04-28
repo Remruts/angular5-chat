@@ -13,7 +13,7 @@ const SERVER_URL = 'http://localhost:1337';
 
 @Injectable()
 export class SocketService {
-	
+
 	private socket;
 
 	public initSocket(){
@@ -22,7 +22,7 @@ export class SocketService {
 
 	public login(newUserData: UserData): Observable<User>{
 		return new Observable<User>( observer => {
-			this.socket.emit('login', newUserData, 
+			this.socket.emit('login', newUserData,
 			(user) => observer.next(user));
 		});
 	}
@@ -39,12 +39,15 @@ export class SocketService {
 		});
 	}
 
-	public createGroup(groupName: string){
-		this.socket.emit('createGroup', groupName);
+	public createGroup(groupName: string): Observable<Group>{
+		return new Observable<Group>( observer =>{
+			this.socket.emit('createGroup', groupName,
+				(grupo) => observer.next(grupo));
+		});
 	}
 
 	public joinGroup(groupid: string){
-		this.socket.emit('joinGroup', groupid);	
+		this.socket.emit('joinGroup', groupid);
 	}
 
 	public onUpdateChatLists(): Observable<ChatLists>{

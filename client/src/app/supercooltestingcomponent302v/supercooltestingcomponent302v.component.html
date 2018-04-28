@@ -1,7 +1,21 @@
 <button (click)=login()> LOGIN </button>
-<button (click)=sendMessage()> Mandar mensaje </button>
+<button (click)=sendMessage()> Mandar mensaje público</button>
+<button (click)=sendGroupMessage()> Mandar mensaje al primer grupo</button>
+<button (click)=createGroup()> Crear grupo nuevo</button>
+<button (click)=joinGroup()> Unirse al primer grupo</button>
+<div *ngIf=grupoActual>El grupo creado es el de id {{grupoActual.id}} llamado {{grupoActual.name}}</div>
+
 <div *ngIf=miUser>
 	{{miUser.nick}}
 </div>
-
-<li *ngFor='let msg of mensajes'> {{msg.content}}</li>
+<div class="row">
+	<div class="column">
+		<li *ngFor='let msg of mensajes'> {{msg.content}}</li>
+	</div>
+	<div class="column">
+		<li *ngFor='let group of grupos'> {{group.name}}</li>
+	</div>
+	<div class="column">
+		<li *ngFor='let user of users'> {{user.nick}}</li>
+	</div>
+</div>
