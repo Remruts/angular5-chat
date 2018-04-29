@@ -3,6 +3,9 @@
 <button (click)=sendGroupMessage()> Mandar mensaje al primer grupo</button>
 <button (click)=createGroup()> Crear grupo nuevo</button>
 <button (click)=joinGroup()> Unirse al primer grupo</button>
+
+<input type="file" (change)="sendFile($event.target.files)">
+
 <div *ngIf=grupoActual>El grupo creado es el de id {{grupoActual.id}} llamado {{grupoActual.name}}</div>
 
 <div *ngIf=miUser>
@@ -10,7 +13,13 @@
 </div>
 <div class="row">
 	<div class="column">
-		<li *ngFor='let msg of mensajes'> {{msg.content}}</li>
+		<div *ngFor='let msg of mensajes'>
+			<li *ngIf="msg.type=='text'"> {{msg.content}}</li>
+			<audio controls *ngIf="msg.type=='audio'">
+				<source [src]="msg.content | safeHtml">
+			</audio>
+			<img *ngIf="msg.type=='image'" [src]="msg.content | safeHtml" height="128" width="128">
+		</div>
 	</div>
 	<div class="column">
 		<li *ngFor='let group of grupos'> {{group.name}}</li>

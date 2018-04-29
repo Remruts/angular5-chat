@@ -24,7 +24,6 @@ export class Supercooltestingcomponent302vComponent implements OnInit {
 	constructor(private socketService: SocketService) { }
 
 	ngOnInit() {
-		console.log('Funciona');
 		this.socketService.initSocket();
 		this.onUpdate();
 		this.onMessage();
@@ -46,6 +45,40 @@ export class Supercooltestingcomponent302vComponent implements OnInit {
 		type: 'text'
 		}
 		this.socketService.sendMessage(msg);
+	}
+
+	sendFile(files){
+		let file = files.item(0);
+		if (file){
+			let type = file.type.substr(0, file.type.indexOf('/'));
+
+			let obs = new Observable<string>(obs => {
+				let reader = new FileReader();
+				//let res = reader.readAsDataURL(file);
+				console.log("Loading file...")
+
+				reader.onerror = err => obs.error(err);
+				reader.onabort = err => obs.error(err);
+				reader.onload = () => obs.next(reader.result);
+				reader.onloadend = () => obs.complete();
+
+				return reader.readAsDataURL(file);
+			})
+
+			obs.subscribe((url) => {
+				console.log("Sending file!");
+				let msg = {	senderid:this.miUser.id,
+					receiverid: '0',
+					content: url,
+					type: type
+				}
+				this.socketService.sendMessage(msg);
+			});
+
+		} else {
+			console.log("No file selected");
+		}
+
 	}
 
 	sendGroupMessage(){
