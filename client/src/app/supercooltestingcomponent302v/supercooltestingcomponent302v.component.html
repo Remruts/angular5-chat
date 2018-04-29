@@ -16,9 +16,9 @@
 		<div *ngFor='let msg of mensajes'>
 			<li *ngIf="msg.type=='text'"> {{msg.content}}</li>
 			<audio controls *ngIf="msg.type=='audio'">
-				<source [src]="msg.content | safeHtml">
+				<source [src]="msg.content | safeURL">
 			</audio>
-			<img *ngIf="msg.type=='image'" [src]="msg.content | safeHtml" height="128" width="128">
+			<img *ngIf="msg.type=='image'" [src]="msg.content | safeURL" height="128" width="128">
 		</div>
 	</div>
 	<div class="column">
