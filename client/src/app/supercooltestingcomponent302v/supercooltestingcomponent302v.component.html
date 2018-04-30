@@ -4,7 +4,7 @@
 <button (click)=createGroup()> Crear grupo nuevo</button>
 <button (click)=joinGroup()> Unirse al primer grupo</button>
 
-<input type="file" (change)="sendFile($event.target.files)">
+<input type="file" accept="audio/*, image/*" (change)="sendFile($event.target.files)">
 
 <div *ngIf=grupoActual>El grupo creado es el de id {{grupoActual.id}} llamado {{grupoActual.name}}</div>
 
