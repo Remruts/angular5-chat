@@ -52,28 +52,23 @@ export class Supercooltestingcomponent302vComponent implements OnInit {
 		if (file){
 			let type = file.type.substr(0, file.type.indexOf('/'));
 
-			let obs = new Observable<string>(obs => {
-				let reader = new FileReader();
-				//let res = reader.readAsDataURL(file);
-				console.log("Loading file...")
+			let reader = new FileReader();
+			console.log("Loading file...");
 
-				reader.onerror = err => obs.error(err);
-				reader.onabort = err => obs.error(err);
-				reader.onload = () => obs.next(reader.result);
-				reader.onloadend = () => obs.complete();
-
-				return reader.readAsDataURL(file);
-			})
-
-			obs.subscribe((url) => {
+			reader.onerror = err => {console.log("Error: failed to load file "+ err)};
+			reader.onabort = err => {console.log("Loading aborted " + err)};
+			reader.onload = () => {
 				console.log("Sending file!");
 				let msg = {	senderid:this.miUser.id,
 					receiverid: '0',
-					content: url,
+					content: reader.result,
 					type: type
 				}
 				this.socketService.sendMessage(msg);
-			});
+			};
+			reader.onloadend = () => {console.log("File loaded!")};
+
+			reader.readAsDataURL(file);
 
 		} else {
 			console.log("No file selected");

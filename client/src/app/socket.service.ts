@@ -17,7 +17,10 @@ export class SocketService {
 	private socket;
 
 	public initSocket(){
-		this.socket = socketIo(SERVER_URL);
+		if (!this.socket){
+			this.socket = socketIo(SERVER_URL);
+		}
+
 	}
 
 	public login(newUserData: UserData): Observable<User>{
