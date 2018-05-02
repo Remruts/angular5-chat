@@ -40,7 +40,7 @@ export class ChatViewComponent implements OnInit {
                     })
                 console.log(loginmsg);
                 this.internalService.onChatChange()
-                    .subscribe((chatid) => this.currentChat = chatid);
+                    .subscribe((userOrGroup) => this.currentChat = userOrGroup.id);
             })
 
     }

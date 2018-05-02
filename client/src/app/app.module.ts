@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import {FormsModule} from '@angular/forms';
 
 
 import { AppComponent } from './app.component';
@@ -41,7 +42,8 @@ import { SendButtonComponent } from './chat/chat-room/message-toolbar/send-butto
     SendButtonComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FormsModule
   ],
   providers: [SocketService, InternalService],
   bootstrap: [AppComponent]

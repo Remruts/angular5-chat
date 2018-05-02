@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {SocketService} from '../../../socket.service';
+import {InternalService} from '../../../internal.service';
 import {User} from '../../../models/user';
 import {Group} from '../../../models/group';
 
@@ -10,7 +11,7 @@ import {Group} from '../../../models/group';
 })
 export class ChatListComponent implements OnInit {
 
-    constructor(private sockser: SocketService) { }
+    constructor(private sockser: SocketService, private internalService: InternalService) { }
     private users: User[];
     private groups: Group[];
 
@@ -27,5 +28,12 @@ export class ChatListComponent implements OnInit {
             });
     }
 
+    changeTab(tab:string){
+        this.currentTab = tab;
+    }
+
+    changeChat(userOrGroup){
+        this.internalService.changeChat(userOrGroup);
+    }
 
 }
