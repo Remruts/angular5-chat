@@ -22,12 +22,26 @@ socket.on('receiveMessage', (data) => {
 })
 
 
-msg = {	'senderid':miUser.id,
-		'receiverid': '8',
+msg = {	'senderid': '100',
+		'senderNick': 'TheAndynator',
+		'receiverid': '0',
 		'content':'andy andy andy andyyyY!',
 		'type': 'text'
 	}
 
-socket.emit('joinGroup','3')
 socket.emit('sendMessage',msg)
 
+msg2 = {	'senderid': '100',
+			'senderNick': 'TheAndynator',
+		'receiverid': '0',
+		'content':'nro2',
+		'type': 'text'
+	}
+socket.emit('sendMessage',msg2)
+msg3 = {	'senderid': '100',
+			'senderNick': 'TheAndynator',
+		'receiverid': '0',
+		'content':'pirulines',
+		'type': 'text'
+	}
+socket.emit('sendMessage',msg3)

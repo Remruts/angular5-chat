@@ -1,7 +1,14 @@
 <div class='chat-list-container'>
-  <app-chat-list-item></app-chat-list-item>
-  <app-chat-list-item></app-chat-list-item>
-  <app-chat-list-item></app-chat-list-item>
+    <div *ngIf="currentTab=='groups'">
+        <div *ngFor="let group of groups">
+            <app-chat-list-item [name]="group.name"></app-chat-list-item>
+        </div>
+    </div>
+    <div *ngIf="currentTab=='users'">
+        <div *ngFor="let user of users">
+            <app-chat-list-item [name]="user.nick" [age]="user.age" [city]="user.city"></app-chat-list-item>
+        </div>
 
-  <app-chat-sorting></app-chat-sorting>
+        <app-chat-sorting></app-chat-sorting>
+    </div>
 </div>

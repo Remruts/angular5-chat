@@ -34,8 +34,8 @@ export class Supercooltestingcomponent302vComponent implements OnInit {
 		age: 24,
 		city: "Buenos Aires"};
 
-		this.socketService.login(newUserData)
-			.subscribe((user) => this.miUser = user);
+		this.miUser = this.socketService.login(newUserData);
+
 	};
 
 	sendMessage(){

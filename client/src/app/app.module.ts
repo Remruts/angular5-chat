@@ -5,7 +5,8 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 
 import { SocketService } from './socket.service';
-import { Supercooltestingcomponent302vComponent } from './supercooltestingcomponent302v/supercooltestingcomponent302v.component';
+import {InternalService} from './internal.service';
+
 import { ChatComponent } from './chat/chat.component';
 import { SafeURLPipe } from './safe-url.pipe';
 import { SidebarComponent } from './chat/sidebar/sidebar.component';
@@ -24,7 +25,6 @@ import { SendButtonComponent } from './chat/chat-room/message-toolbar/send-butto
 @NgModule({
   declarations: [
     AppComponent,
-    Supercooltestingcomponent302vComponent,
     SafeURLPipe,
     ChatComponent,
     SidebarComponent,
@@ -43,7 +43,7 @@ import { SendButtonComponent } from './chat/chat-room/message-toolbar/send-butto
   imports: [
     BrowserModule
   ],
-  providers: [SocketService],
+  providers: [SocketService, InternalService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

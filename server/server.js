@@ -31,7 +31,7 @@ io.on('connection',function(socket){
 
 			socket.join(newUserid) // hack re piola para no guardar tabla de ruteo
 
-			io.sockets.emit('updateChatLists',{"users":users,"groups":groups} )
+			updateChatLists();
 
 			userxsocket[socket.id] = newUserid
 
@@ -59,7 +59,7 @@ io.on('connection',function(socket){
 
 		callback(newGroup);
 
-		io.sockets.emit('updateChatLists',{"users":users,"groups":groups} )
+		updateChatLists();
 
 		console.log("new group created")
 		console.log(newGroup)
@@ -77,7 +77,8 @@ io.on('connection',function(socket){
 			console.log( users[userid].nick +' (id: ' + userid + ') disconnected')
 			delete userxsocket[socket.id]
 			delete users[userid]
-			io.sockets.emit('updateChatLists',{"users":users,"groups":groups} )
+
+			updateChatLists();
 		} else {
 			console.log('socket disconnected, id: ' + socket.id)
 		}
@@ -96,7 +97,14 @@ http.listen(1337, function(){
   console.log('listening on *:1337');
 });
 
+function updateChatLists(){
+	let userlist = [];
+	for (var key in users){
+		userlist.push(users[key]);
+	}
 
+	io.sockets.emit('updateChatLists',{"users":userlist,"groups":groups} )
+}
 
 // Lista de cambios al modelo:
 // 	TODO

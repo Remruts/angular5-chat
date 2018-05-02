@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-chat-list-item',
@@ -7,9 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ChatListItemComponent implements OnInit {
 
-  constructor() { }
+    @Input() name: string;
+    @Input() age: number;
+    @Input() city: string;
 
-  ngOnInit() {
-  }
+    constructor() { }
+
+    ngOnInit() {
+    }
 
 }
