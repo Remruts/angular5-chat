@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import {SocketService} from '../../../socket.service';
 import {InternalService} from '../../../internal.service';
 
 import {Message} from '../../../models/message';
+import {User} from '../../../models/user';
+import {Group} from '../../../models/group';
 
 @Component({
   selector: 'app-chat-view',
@@ -14,7 +16,7 @@ export class ChatViewComponent implements OnInit {
     private mensajes: {[id: string]: Message[]} = {};
     private myUserID = "";
 
-    private currentChat: string;
+		@Input() currentChat: User | Group;
 
     constructor(private sockser: SocketService, private internalService: InternalService) { }
 
@@ -24,24 +26,25 @@ export class ChatViewComponent implements OnInit {
                 this.myUserID = this.sockser.getMyUser().id;
 
                 this.sockser.onMessageReceive()
-                    .subscribe((msg) => {
-                        console.log(msg);
-                        if (this.myUserID == msg.receiverid){
-                            if (!this.mensajes[msg.senderid]){
-                                this.mensajes[msg.senderid] = [];
-                            }
-                            this.mensajes[msg.senderid].push(msg);
-                        } else{
-                            if (!this.mensajes[msg.receiverid]){
-                                this.mensajes[msg.receiverid] = [];
-                            }
-                            this.mensajes[msg.receiverid].push(msg);
-                        }
-                    })
+                    .subscribe((msg) => this.pushMessage(msg));
                 console.log(loginmsg);
-                this.internalService.onChatChange()
-                    .subscribe((userOrGroup) => this.currentChat = userOrGroup.id);
+								this.internalService.onMessagePushed()
+									.subscribe((msg) => this.pushMessage(msg));
             })
-
     }
+
+		pushMessage(msg: Message){
+			console.log(msg);
+			if (this.myUserID == msg.receiverid){
+					if (!this.mensajes[msg.senderid]){
+							this.mensajes[msg.senderid] = [];
+					}
+					this.mensajes[msg.senderid].push(msg);
+			} else{
+					if (!this.mensajes[msg.receiverid]){
+							this.mensajes[msg.receiverid] = [];
+					}
+					this.mensajes[msg.receiverid].push(msg);
+			}
+		}
 }

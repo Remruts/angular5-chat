@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {InternalService} from '../../internal.service';
+import {User} from '../../models/user';
+import {Group} from '../../models/group';
 
 @Component({
   selector: 'app-chat-room',
@@ -7,9 +10,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ChatRoomComponent implements OnInit {
 
-  constructor() { }
+	private currentChat: User | Group;
+
+  constructor(private internalService: InternalService) { }
 
   ngOnInit() {
+		this.internalService.onChatChange()
+			.subscribe((userOrGroup) => this.currentChat = userOrGroup);
   }
 
 }

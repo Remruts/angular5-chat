@@ -1,5 +1,5 @@
 <div class='chat-view'>
-    <div *ngFor="let msj of mensajes[currentChat]">
+	<div *ngFor="let msj of mensajes[currentChat.id]">
         <app-message [mensaje]="msj"></app-message>
     </div>
-</div>
+	</div>

@@ -1,4 +1,8 @@
 <div class='message-container'>
   <span class='name'>{{mensaje.senderNick}}</span>
-  <span class='message'>{{mensaje.content}}</span>
+  <span class='message' *ngIf="mensaje.type=='text'"> {{mensaje.content}}</span>
+	<audio class='message' controls *ngIf="mensaje.type=='audio'">
+		<source [src]="mensaje.content | safeURL">
+	</audio>
+	<img class='message' *ngIf="mensaje.type=='image'" [src]="mensaje.content | safeURL" max-height="128" max-width="128">
 </div>

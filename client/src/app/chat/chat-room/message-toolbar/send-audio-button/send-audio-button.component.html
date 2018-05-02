@@ -1,3 +1,4 @@
-<p>
-  send-audio-button works!
-</p>
+<label>
+	Audio
+<input type="file" accept="audio/*" (change)="sendFile($event.target.files)" style="display:none">
+</label>

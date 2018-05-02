@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import {SocketService} from '../../../socket.service';
 import {InternalService} from '../../../internal.service';
+
 import {Message} from '../../../models/message';
+import {User} from '../../../models/user';
+import {Group} from '../../../models/group';
 
 @Component({
   selector: 'app-message-toolbar',
@@ -11,13 +14,11 @@ import {Message} from '../../../models/message';
 export class MessageToolbarComponent implements OnInit {
 
     private mensaje: string;
-    private currentChat: string;
+    @Input() currentChat: User | Group;
 
     constructor(private sockser: SocketService, private internalService: InternalService) { }
 
     ngOnInit() {
-        this.internalService.onChatChange()
-            .subscribe((userOrGroup) => this.currentChat = userOrGroup.id);
     }
 
     sendMessage(){
@@ -25,13 +26,19 @@ export class MessageToolbarComponent implements OnInit {
             let msg = {
                 senderid: this.sockser.getMyUser().id,
                 senderNick: this.sockser.getMyUser().nick,
-                receiverid: this.currentChat,
+                receiverid: this.currentChat.id,
                 type: "text",
                 content: this.mensaje
             }
             this.sockser.sendMessage(msg);
+
+						// FIXME: hack para saber si es un User. Buscar otra forma
+						if ('nick' in this.currentChat && (this.sockser.getMyUser().id != this.currentChat.id)){
+							this.internalService.addMessage(msg);
+						}
             this.mensaje = "";
         }
+
 
     }
 

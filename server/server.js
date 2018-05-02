@@ -4,7 +4,7 @@ var io = require('socket.io')(http);
 
 var nextID = 0
 var users = {}
-var chatGlobal = {'id':'0','name':"Andy's psycho boogaloo + 4"}
+var chatGlobal = {'id':'0','name':"Grupo público"}
 var groups = [chatGlobal]
 var userxsocket = {}
 

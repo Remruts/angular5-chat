@@ -3,15 +3,16 @@
     <div class='info'>
       <div class='circle'></div>
       <div class='user-data'>
-        <span class='name'>Lucía Parral</span>
-        <span>25, Buenos Aires</span>
+        <span *ngIf="currentChat.name" class='name'>{{currentChat.name}}</span>
+				<span *ngIf="currentChat.nick" class='name'>{{currentChat.nick}}</span>
+        <span *ngIf="currentChat.age">{{currentChat.age}}, {{currentChat.city}}</span>
       </div>
     </div>
   </div>
   <div class='chat-view'>
-    <app-chat-view></app-chat-view>
+    <app-chat-view [currentChat]="currentChat"></app-chat-view>
   </div>
   <div class='message-toolbar'>
-    <app-message-toolbar></app-message-toolbar>
+    <app-message-toolbar [currentChat]="currentChat"></app-message-toolbar>
   </div>
 </div>
