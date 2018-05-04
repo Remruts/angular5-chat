@@ -9,7 +9,6 @@ import {InternalService} from '../../internal.service';
 })
 export class LoginComponent implements OnInit {
 
-    private name: string;
     private nick: string;
     private age: number;
     private city: string;
@@ -27,22 +26,6 @@ export class LoginComponent implements OnInit {
           this.modal.style.display = "none";
           this.sockser.login({nick:this.nick, age:this.age, city:this.city});
       }
-    }
-
-    create(){
-        this.modal = document.getElementById('groupModal');
-        if (this.name != ""){
-            this.modal.style.display = "none";
-            this.sockser.createGroup(this.name)
-                .subscribe((grupo) => this.internalService.changeChat(grupo));
-						this.name = "";
-        }
-    }
-
-    cancel(){
-        this.modal = document.getElementById('groupModal');
-        this.modal.style.display = "none";
-        this.name = "";
     }
 
 }
