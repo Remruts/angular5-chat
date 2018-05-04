@@ -35,6 +35,7 @@ export class LoginComponent implements OnInit {
             this.modal.style.display = "none";
             this.sockser.createGroup(this.name)
                 .subscribe((grupo) => this.internalService.changeChat(grupo));
+						this.name = "";
         }
     }
 

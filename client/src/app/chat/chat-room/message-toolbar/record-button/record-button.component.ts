@@ -5,12 +5,14 @@ import {Group} from '../../../../models/group';
 import {SocketService} from '../../../../socket.service';
 import {InternalService} from '../../../../internal.service';
 
+declare var MediaRecorder: any;
 @Component({
   selector: 'app-record-button',
   templateUrl: './record-button.component.html',
   styleUrls: ['./record-button.component.css']
 })
 export class RecordButtonComponent implements OnInit {
+
     @Input() currentChat: User | Group;
     private mediaRecorder;
     private audioURL = "";
