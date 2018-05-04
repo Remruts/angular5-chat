@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {InternalService} from '../../../internal.service';
+import {User} from '../../../models/user';
 
 @Component({
   selector: 'app-chat-sorting',
@@ -7,9 +9,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ChatSortingComponent implements OnInit {
 
-  constructor() { }
+  constructor(private internalService: InternalService) { }
 
   ngOnInit() {
+  }
+
+  Sort(caso: string){
+      let f : (a:User, b:User) => number
+      switch(caso){
+        case 'alfabetico':
+            f = (a:User, b:User) => a.nick > b.nick ? 1 : -1;
+        break;
+        case 'ciudad':
+            f = (a:User, b:User) => a.city > b.city ? 1 : -1;
+        break;
+        case 'edad':
+            f = (a:User, b:User) => a.age < b.age ? 1 : -1;
+        break;
+
+      }
+
+      this.internalService.changeSort(f);
   }
 
 }

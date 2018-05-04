@@ -15,4 +15,6 @@
 .message-container > .message {
   color: #4A4A4A;
   font-size: 14px;
+  max-height: 600px;
+  max-width: 600px;
 }

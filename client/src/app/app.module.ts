@@ -22,6 +22,9 @@ import { AddImageButtonComponent } from './chat/chat-room/message-toolbar/add-im
 import { SendAudioButtonComponent } from './chat/chat-room/message-toolbar/send-audio-button/send-audio-button.component';
 import { RecordButtonComponent } from './chat/chat-room/message-toolbar/record-button/record-button.component';
 import { SendButtonComponent } from './chat/chat-room/message-toolbar/send-button/send-button.component';
+import { SendFileComponent } from './chat/chat-room/message-toolbar/send-file/send-file.component';
+import { LoginComponent } from './chat/login/login.component';
+import { NewGroupComponent } from './chat/sidebar/new-group/new-group.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +42,10 @@ import { SendButtonComponent } from './chat/chat-room/message-toolbar/send-butto
     AddImageButtonComponent,
     SendAudioButtonComponent,
     RecordButtonComponent,
-    SendButtonComponent
+    SendButtonComponent,
+    SendFileComponent,
+    LoginComponent,
+    NewGroupComponent
   ],
   imports: [
     BrowserModule,

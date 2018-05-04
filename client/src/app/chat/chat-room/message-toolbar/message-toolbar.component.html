@@ -1,5 +1,6 @@
 <input [(ngModel)]="mensaje" placeholder="" (keyup.enter)="sendMessage()">
 <app-send-button (click)="sendMessage()"></app-send-button>
-<app-add-image-button [currentChat]="currentChat"></app-add-image-button>
-<app-record-button></app-record-button>
-<app-send-audio-button [currentChat]="currentChat"></app-send-audio-button>
+<!-- <app-add-image-button [currentChat]="currentChat"></app-add-image-button> -->
+<app-send-file [currentChat]="currentChat"></app-send-file>
+<app-record-button [currentChat]="currentChat"></app-record-button>
+<!-- <app-send-audio-button [currentChat]="currentChat"></app-send-audio-button> -->

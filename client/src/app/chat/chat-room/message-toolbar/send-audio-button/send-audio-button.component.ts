@@ -17,8 +17,8 @@ export class SendAudioButtonComponent implements OnInit {
 
 	@Input() currentChat: User | Group;
 
-  ngOnInit() {
-  }
+    ngOnInit() {
+    }
 
 	sendFile(files){
 		let file = files.item(0);

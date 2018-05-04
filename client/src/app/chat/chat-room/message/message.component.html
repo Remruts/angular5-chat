@@ -4,5 +4,5 @@
 	<audio class='message' controls *ngIf="mensaje.type=='audio'">
 		<source [src]="mensaje.content | safeURL">
 	</audio>
-	<img class='message' *ngIf="mensaje.type=='image'" [src]="mensaje.content | safeURL" max-height="128" max-width="128">
+	<img class='message' *ngIf="mensaje.type=='image'" [src]="mensaje.content | safeURL">
 </div>

@@ -14,7 +14,7 @@ export class ChatComponent implements OnInit {
     ngOnInit() {
         // Esto anda sólo cuando está hardcodeado. Cuando agreguemos el login posta, va a haber que hacer otra función y llamarla
         this.sockser.initSocket();
-        this.sockser.login({nick:'Marto', age:24, city:'Buenos Aires'});
+        //this.sockser.login({nick:'Marto', age:24, city:'Buenos Aires'});        
     }
 
 }
