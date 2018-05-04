@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SidebarComponent implements OnInit {
 
+	private currentTab: string = "users";
+
   constructor() { }
 
   ngOnInit() {
   }
+
+	changeTab(tab:string){
+			this.currentTab = tab;
+	}
 
 }

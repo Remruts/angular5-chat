@@ -1,7 +1,7 @@
 <div class='sidebar-container'>
   <div class='users-groups'>
-    <span>Usuarios</span>
-    <span>Grupos</span>
+    <span (click)="changeTab('users')">Usuarios</span>
+    <span (click)="changeTab('groups')">Grupos</span>
   </div>
-  <app-chat-list></app-chat-list>
+  <app-chat-list [currentTab]="currentTab"></app-chat-list>
 </div>

@@ -11,7 +11,7 @@ import {User} from './models/user';
 export class InternalService {
 
     private currentChat = new BehaviorSubject<User | Group>({id:"0", name:"Grupo público"});
-    private sortingfunction = new BehaviorSubject<(a:User, b:User) => number>((a:User, b:User) => a.nick > b.nick ? 1 : -1);
+    private sortingfunction = new BehaviorSubject<(a:User, b:User) => number>((a:User, b:User) => a.nick.toLowerCase() > b.nick.toLowerCase() ? 1 : -1);
 	private mensajes = new Subject<Message>();
     constructor() { }
 

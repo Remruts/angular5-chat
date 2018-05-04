@@ -1,21 +1,15 @@
-<div class='sidebar-container'>
-  <div class='users-groups'>
-    <span (click)="changeTab('users')">Usuarios</span>
-    <span (click)="changeTab('groups')">Grupos</span>
-  </div>
-  <div class='chat-list-container'>
-      <div *ngIf="currentTab=='groups'">
-          <div *ngFor="let group of groups">
-              <app-chat-list-item [name]="group.name" (click)="changeChat(group)"></app-chat-list-item>
-          </div>
-          <app-new-group></app-new-group>
-      </div>
-      <div *ngIf="currentTab=='users'">
-          <div *ngFor="let user of users">
-              <app-chat-list-item [name]="user.nick" [age]="user.age" [city]="user.city" (click)="changeChat(user)"></app-chat-list-item>
-          </div>
+<div class='chat-list-container'>
+    <div *ngIf="currentTab=='groups'">
+        <div *ngFor="let group of groups">
+            <app-chat-list-item [name]="group.name" (click)="changeChat(group)"></app-chat-list-item>
+        </div>
+        <app-new-group></app-new-group>
+    </div>
+    <div *ngIf="currentTab=='users'">
+        <div *ngFor="let user of users">
+            <app-chat-list-item [name]="user.nick" [age]="user.age" [city]="user.city" (click)="changeChat(user)"></app-chat-list-item>
+        </div>
 
-          <app-chat-sorting></app-chat-sorting>
-      </div>
-  </div>
+        <app-chat-sorting></app-chat-sorting>
+    </div>
 </div>

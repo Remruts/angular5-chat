@@ -18,10 +18,10 @@ export class ChatSortingComponent implements OnInit {
       let f : (a:User, b:User) => number
       switch(caso){
         case 'alfabetico':
-            f = (a:User, b:User) => a.nick > b.nick ? 1 : -1;
+            f = (a:User, b:User) => a.nick.toLowerCase() > b.nick.toLowerCase() ? 1 : -1;
         break;
         case 'ciudad':
-            f = (a:User, b:User) => a.city > b.city ? 1 : -1;
+            f = (a:User, b:User) => a.city.toLowerCase() > b.city.toLowerCase() ? 1 : -1;
         break;
         case 'edad':
             f = (a:User, b:User) => a.age < b.age ? 1 : -1;

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import {SocketService} from '../../../socket.service';
 import {InternalService} from '../../../internal.service';
 import {User} from '../../../models/user';
@@ -16,7 +16,7 @@ export class ChatListComponent implements OnInit {
     private groups: Group[];
     private sortingFunction: (a:User, b:User) => number;
 
-    private currentTab = "users";
+    @Input() currentTab: string;
 
     ngOnInit() {
         this.sockser.onLoginReady()
@@ -34,10 +34,6 @@ export class ChatListComponent implements OnInit {
                         this.users.sort(this.sortingFunction);
                     }));
             });
-    }
-
-    changeTab(tab:string){
-        this.currentTab = tab;
     }
 
     changeChat(userOrGroup){
