@@ -9,6 +9,7 @@ import {Message} from '../../../models/message'
 export class MessageComponent implements OnInit {
 
     @Input() mensaje: Message;
+		@Input() esMio: boolean;
 
     constructor() { }
 
