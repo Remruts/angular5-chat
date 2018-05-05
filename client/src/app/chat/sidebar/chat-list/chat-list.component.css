@@ -1,0 +1,13 @@
+.chat-list-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.chat-list-container > div > .scroll-container {
+  overflow: scroll;
+  height: 80%;
+  width: 100%;
+  position: absolute;
+}
+

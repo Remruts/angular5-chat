@@ -1,15 +1,17 @@
-<button (click)="showModal()">Nuevo grupo</button>
+<button class='new-group-button' (click)="showModal()">Nuevo grupo</button>
 <div id="groupModal" class="modal-group">
-    <div class="group-modal-content">
-        <div>
-            Nombre:
-            <input [(ngModel)]="name" placeholder="" type="text" (keyup.enter)="create()">
-        </div>
-        <div>
-            <button (click)="create()">Crear</button>
-        </div>
-        <div>
-            <button (click)="cancel()">Cancelar</button>
-        </div>
+  <div class="group-modal-content">
+    <span class='title'>Crear nuevo grupo</span>
+    <div>
+      <input [(ngModel)]="name" placeholder="" type="text" (keyup.enter)="create()">
     </div>
+    <div class='action-buttons'>
+      <div class='cancel'>
+        <button (click)="cancel()">Cancelar</button>
+      </div>
+      <div class='create'>
+        <button (click)="create()">Crear Grupo</button>
+      </div>
+  </div>
+  </div>
 </div>

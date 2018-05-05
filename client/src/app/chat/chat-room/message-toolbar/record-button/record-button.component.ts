@@ -22,14 +22,14 @@ export class RecordButtonComponent implements OnInit {
     }
 
     ngOnInit() {
-        navigator.mediaDevices.getUserMedia({ audio: true, video: false})
-          .then((stream) => {
-            this.mediaRecorder = new MediaRecorder(stream);
-          })
-          .catch(function(err) {
-            console.log("No tenés para grabar audio :(");
-            console.log(err.message);
-          });
+        // navigator.mediaDevices.getUserMedia({ audio: true, video: false})
+        //   .then((stream) => {
+        //     this.mediaRecorder = new MediaRecorder(stream);
+        //   })
+        //   .catch(function(err) {
+        //     console.log("No tenés para grabar audio :(");
+        //     console.log(err.message);
+        //   });
     }
 
     record(){

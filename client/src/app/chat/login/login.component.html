@@ -1,19 +1,22 @@
 <div id="myModal" class="modal">
-    <div class="modal-content">
-        <div>
-            Nick:
-            <input [(ngModel)]="nick" placeholder="" type="text" (keyup.enter)="login()">
-        </div>
-        <div>
-            Edad:
-            <input [(ngModel)]="age" placeholder="" type="number" (keyup.enter)="login()">
-        </div>
-        <div>
-            Ciudad:
-            <input [(ngModel)]="city" placeholder="" type="text" (keyup.enter)="login()">
-        </div>
-        <div>
-            <button (click)="login()">Login</button>
-        </div>
+  <div class="modal-content">
+    <span class='title'>Datos de Ingreso</span>
+    <div class='form-inputs'>
+      <div>
+        <span class='item'>Nick</span>
+        <input [(ngModel)]="nick" placeholder="" type="text" (keyup.enter)="login()">
+      </div>
+      <div>
+        <span class='item'>Edad</span>
+        <input [(ngModel)]="age" placeholder="" type="number" (keyup.enter)="login()">
+      </div>
+      <div>
+        <span class='item'>Ciudad</span>
+        <input [(ngModel)]="city" placeholder="" type="text" (keyup.enter)="login()">
+      </div>
     </div>
+    <div class='login-button'>
+      <button (click)="login()">Ingresar</button>
+    </div>
+  </div>
 </div>

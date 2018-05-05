@@ -1,22 +1,111 @@
 /* The Modal (background) */
 .modal-group {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(255, 255, 255, 0.83);
 }
 
 /* Modal Content/Box */
-.group-modal-content {
-    background-color: #fefefe;
-    margin: 15% auto; /* 15% from the top and centered */
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%; /* Could be more or less, depending on screen size */
+.modal-group > .group-modal-content {
+  background-color: white;
+  margin: 25% auto;
+  width: 290px;
+  height: 150px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 10px;
+  box-shadow: 0px 0px 9px 2px #80808038;
 }
+
+.modal-group > .group-modal-content > .title {
+  font-weight: bold;
+  color: #4A4A4A;
+  margin-top: 13px;
+  margin-bottom: 13px;
+}
+
+.modal-group > .group-modal-content > div > input {
+  height: 29px;
+  width: 244px;
+  padding: 0;
+  margin: 0;
+  border-radius: 10px;
+  box-shadow: none;
+  border: 1px solid #ececec;
+}
+
+.modal-group > .group-modal-content > .action-buttons {
+  display: flex;
+  width: 100%;
+}
+
+.modal-group > .group-modal-content > .action-buttons > div {
+  width: 50%;
+  text-align: center;
+}
+
+.modal-group > .group-modal-content > .action-buttons > .cancel {
+  border-right: 1px solid #ececec;
+  border-top: 1px solid #ececec;
+}
+
+.modal-group > .group-modal-content > .action-buttons > .create {
+  border-top: 1px solid #ececec;
+}
+
+
+.modal-group > .group-modal-content > .action-buttons > .cancel > button {
+  color: #D0021B;
+  font-size: 13px;
+  background: none;
+  border: none;
+  margin: auto;
+  width: 100%;
+  height: 42px;
+  text-align: center;
+}
+
+
+.modal-group > .group-modal-content > .action-buttons > .create > button {
+  color: #4A90E2;
+  font-size: 13px;
+  font-weight: bold;
+  background: none;
+  border: none;
+  margin: auto;
+  width: 100%;
+  height: 42px;
+  text-align: center;
+}
+
+
+.new-group-button {
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  line-height: 46px;
+  height: 50px;
+  font-size: 14px;
+  margin: auto;
+  padding-left: 66px;
+  color: #4A90E2;
+  background: none;
+  border: none;
+  width: 100%;
+  text-align: center;
+}
+
+
+
+

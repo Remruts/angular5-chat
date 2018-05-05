@@ -1,5 +1,6 @@
 .sidebar-container {
-  position: fixed;
+  position: absolute;
+  height: 100vh;
   top: 0;
   bottom: 0;
   left: 0;
@@ -15,4 +16,8 @@
   font-size: 14px;
   border-bottom: 1px solid #ECECEC;
   margin-bottom: 15px;
+}
+
+.sidebar-container > .users-groups > span {
+  cursor: pointer;
 }

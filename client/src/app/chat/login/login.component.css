@@ -1,22 +1,82 @@
 /* The Modal (background) */
 .modal {
-    display: block; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  /*display: none;*/
+  display: block;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: #E6E6E6;
 }
 
-/* Modal Content/Box */
-.modal-content {
-    background-color: #fefefe;
-    margin: 15% auto; /* 15% from the top and centered */
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%; /* Could be more or less, depending on screen size */
+.modal > .modal-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  width: 390px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 9px 2px #80808038;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
+
+.modal > .modal-content > .title {
+  font-weight: bold;
+  color: #4A4A4A;
+  font-size: 18px;
+  margin-bottom: 30px;
+  margin-top: 30px;
+}
+
+.modal > .modal-content > .form-inputs {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.modal > .modal-content > .form-inputs > div {
+  margin-bottom: 15px;
+  display: flex;
+  align-items: flex-end;
+}
+
+.modal > .modal-content > .form-inputs > div > .item {
+  color: #6F6F6F;
+  font-size: 17px;
+}
+
+.modal > .modal-content > .form-inputs > div > input {
+  border: none;
+  border-bottom: 1px solid #dbdbdb;
+  width: 240px;
+  margin-left: 10px;
+  height: 28px;
+  font-size: 20px;
+  color: #4A4A4A;
+}
+
+
+.modal > .modal-content > .login-button {
+  width: 100%;
+  border-top: 1px solid #eee;
+  margin-top: 26px;
+}
+
+
+.modal > .modal-content > .login-button > button {
+  color: #4A90E2;
+  font-size: 18px;
+  font-weight: bold;
+  background: none;
+  border: none;
+  margin: auto;
+  width: 100%;
+  height: 50px;
+  text-align: center;
+}
+
+
+
