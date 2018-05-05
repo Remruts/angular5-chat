@@ -18,3 +18,11 @@
   max-height: 600px;
   max-width: 600px;
 }
+
+.friend-message {
+  align-items: flex-start;
+}
+
+.own-message {
+  align-items: flex-end;
+}
