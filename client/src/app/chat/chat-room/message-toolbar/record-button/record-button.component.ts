@@ -17,31 +17,37 @@ export class RecordButtonComponent implements OnInit {
     private mediaRecorder;
     private audioURL = "";
     private chunks = [];
+		private canRecord = false;
 
     constructor(private sockser: SocketService, private internalService: InternalService) {
     }
 
     ngOnInit() {
-        // navigator.mediaDevices.getUserMedia({ audio: true, video: false})
-        //   .then((stream) => {
-        //     this.mediaRecorder = new MediaRecorder(stream);
-        //   })
-        //   .catch(function(err) {
-        //     console.log("No tenés para grabar audio :(");
-        //     console.log(err.message);
-        //   });
+
     }
 
     record(){
-        this.mediaRecorder.start();
-        console.log(this.mediaRecorder.state);
-        console.log("recorder started");
+				if (this.canRecord){
+					this.mediaRecorder.start();
+	        console.log(this.mediaRecorder.state);
+	        console.log("recorder started");
 
-        this.chunks = [];
+	        this.chunks = [];
 
-        this.mediaRecorder.ondataavailable = (e) => {
-          this.chunks.push(e.data);
-        }
+	        this.mediaRecorder.ondataavailable = (e) => {
+	          this.chunks.push(e.data);
+	        }
+				} else {
+					navigator.mediaDevices.getUserMedia({ audio: true, video: false})
+	          .then((stream) => {
+	            this.mediaRecorder = new MediaRecorder(stream);
+							this.canRecord = true;
+	          })
+	          .catch(function(err) {
+	            console.log("No tenés para grabar audio :(");
+	            console.log(err.message);
+	          });
+				}
     }
 
     stop(){

@@ -24,7 +24,7 @@ export class ChatSortingComponent implements OnInit {
             f = (a:User, b:User) => a.city.toLowerCase() > b.city.toLowerCase() ? 1 : -1;
         break;
         case 'edad':
-            f = (a:User, b:User) => a.age < b.age ? 1 : -1;
+            f = (a:User, b:User) => a.age > b.age ? 1 : -1;
         break;
 
       }
