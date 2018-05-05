@@ -1,4 +1,4 @@
-<div class='chat-view'>
+<div #scrollable class="chat-view">
 	<div *ngFor="let msj of mensajes[currentChat.id]">
         <app-message [mensaje]="msj" [esMio]="myUserID==msj.senderid"></app-message>
     </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 import {SocketService} from '../../../socket.service';
 import {InternalService} from '../../../internal.service';
 
@@ -17,6 +17,7 @@ export class ChatViewComponent implements OnInit {
     private myUserID = "";
 
 		@Input() currentChat: User | Group;
+		@ViewChild('scrollable') private myScrollContainer: ElementRef;
 
     constructor(private sockser: SocketService, private internalService: InternalService) { }
 
@@ -33,6 +34,10 @@ export class ChatViewComponent implements OnInit {
             })
     }
 
+		ngAfterViewChecked() {
+        this.scrollToBottom();
+    }
+
 		pushMessage(msg: Message){
 			console.log(msg);
 			if (this.myUserID == msg.receiverid){
@@ -46,5 +51,9 @@ export class ChatViewComponent implements OnInit {
 					}
 					this.mensajes[msg.receiverid].push(msg);
 			}
+		}
+
+		scrollToBottom(){
+			this.myScrollContainer.nativeElement.scrollTop = this.myScrollContainer.nativeElement.scrollHeight;
 		}
 }
