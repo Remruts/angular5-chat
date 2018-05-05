@@ -1,0 +1,16 @@
+.file-input > label {
+  width: 20px;
+  height: 20px;
+  color: #4A90E2;
+}
+
+.file-input > label > img {
+  width: 20px;
+  height: 20px;
+  margin-top: 3px;
+  margin-left: 28px;
+}
+
+.file-input > input {
+  display: none;
+}

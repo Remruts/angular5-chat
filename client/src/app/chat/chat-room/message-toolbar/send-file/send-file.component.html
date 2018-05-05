@@ -1,4 +1,6 @@
-<label>
-	Archivo
-<input type="file" accept="audio/*, image/*" (change)="sendFile($event.target.files)" style="display:none">
-</label>
+<div class='file-input'>
+  <label for="finput">
+    <img src="assets/upload-file.svg"/>
+  </label>
+  <input id="finput" type="file" accept="audio/*, image/*" (change)="sendFile($event.target.files)">
+</div>

@@ -1,0 +1,16 @@
+.toolbar {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  height: 60px;
+  border-top: 1px solid #ECECEC
+}
+
+.toolbar > input {
+  height: 30px;
+  width: calc(100% - 180px);
+  border-radius: 5px;
+  border: 1px solid #ececec;
+  font-size: 15px;
+  margin: 0 10px 0 15px;
+}
