@@ -18,6 +18,7 @@
 
 .chat-room-container > .chat-view {
   height: calc(100% - 80px - 60px);
+  overflow-y: scroll;
 }
 
 .chat-room-container > .message-toolbar {

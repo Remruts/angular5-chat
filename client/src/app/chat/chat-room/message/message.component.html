@@ -1,8 +1,12 @@
 <div
   class='message-container'
   [ngStyle]="{'align-items': true ? 'flex-end' : 'flex-start' }" >
-  <span class='name'>{{mensaje.senderNick}}</span>
-  <span class='message' *ngIf="mensaje.type=='text'"> {{mensaje.content}}</span>
+  <span class='name'>
+    {{mensaje.senderNick}}
+  </span>
+  <span class='message' *ngIf="mensaje.type=='text'">
+    {{mensaje.content}}
+  </span>
 	<audio class='message' controls *ngIf="mensaje.type=='audio'">
 		<source [src]="mensaje.content | safeURL">
 	</audio>
