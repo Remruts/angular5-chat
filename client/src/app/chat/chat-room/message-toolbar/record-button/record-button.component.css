@@ -1,5 +1,5 @@
 .record-button {
-  background: url("assets/record.svg") no-repeat;
+  background: url("/assets/record.svg") no-repeat;
   background-size: contain;
   cursor: pointer;
   width: 25px;

@@ -1,7 +1,7 @@
 <div class='chat-room-container'>
   <div class='header'>
     <div class='info'>
-      <div class='circle'></div>
+      <div class='circle' [ngStyle]="{'background-image':'url(/assets/cats/cat'+currentChat.id%300+'.svg)', 'background-repeat': 'no-repeat',  'background-position': 'center', 'background-size':'cover'}"></div>
       <div class='user-data'>
         <span *ngIf="currentChat.name" class='name'>{{currentChat.name}}</span>
 				<span *ngIf="currentChat.nick" class='name'>{{currentChat.nick}}</span>

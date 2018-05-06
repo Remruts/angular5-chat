@@ -52,7 +52,7 @@
 .chat-room-container > .header > .info > .circle {
   width: 38px;
   height: 38px;
-  background-color: purple;
+  background-color: #f6f6f6;
   border-radius: 19px;
   margin-right: 9px;
 }

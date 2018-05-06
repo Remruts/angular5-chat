@@ -1,5 +1,5 @@
 <div class='list-item'>
-    <div class='circle'></div>
+    <div class='circle' [ngStyle]="{'background-image':'url(/assets/cats/cat'+id%300+'.svg)', 'background-repeat': 'no-repeat',  'background-position': 'center', 'background-size':'cover'}"></div>
         <div class='user-data'>
             <span class='name'>{{name}}</span>
             <span *ngIf="age">{{age}}, {{city}}</span>
