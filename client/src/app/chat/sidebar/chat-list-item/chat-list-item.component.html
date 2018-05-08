@@ -1,7 +1,9 @@
-<div class='list-item'>
-    <div class='circle' [ngStyle]="{'background-image':'url(/assets/cats/cat'+id%300+'.svg)', 'background-repeat': 'no-repeat',  'background-position': 'center', 'background-size':'cover'}"></div>
-        <div class='user-data'>
-            <span class='name'>{{name}}</span>
-            <span *ngIf="age">{{age}}, {{city}}</span>
+<div class='list-item' [ngClass]="{'selected-item': isCurrent }">
+    <div class='circle'
+      [ngStyle]="{'background-image':'url(/assets/cats/cat'+id%300+'.svg)'}">
+    </div>
+    <div class='user-data' >
+        <span class='name' [ngClass]="{'selected-name': isCurrent }">{{name}}</span>
+        <span *ngIf="age" [ngClass]="{'selected-age': isCurrent }">{{age}}, {{city}}</span>
     </div>
 </div>

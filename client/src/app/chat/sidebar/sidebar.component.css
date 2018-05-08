@@ -21,3 +21,7 @@
 .sidebar-container > .users-groups > span {
   cursor: pointer;
 }
+
+.selected-tab {
+  color: #4A4A4A;
+}

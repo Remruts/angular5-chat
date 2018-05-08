@@ -1,7 +1,15 @@
 <div class='sidebar-container'>
   <div class='users-groups'>
-    <span (click)="changeTab('users')">Usuarios</span>
-    <span (click)="changeTab('groups')">Grupos</span>
+    <span
+      (click)="changeTab('users')"
+      [ngClass]="{'selected-tab': currentTab === 'users' }">
+      Usuarios
+    </span>
+    <span
+      (click)="changeTab('groups')"
+      [ngClass]="{'selected-tab': currentTab !== 'users' }">
+      Grupos
+    </span>
   </div>
   <app-chat-list [currentTab]="currentTab"></app-chat-list>
 </div>
