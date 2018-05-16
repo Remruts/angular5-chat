@@ -7,93 +7,91 @@ import {InternalService} from '../../../../internal.service';
 
 declare var MediaRecorder: any;
 @Component({
-  selector: 'app-record-button',
-  templateUrl: './record-button.component.html',
-  styleUrls: ['./record-button.component.css']
+	selector: 'app-record-button',
+	templateUrl: './record-button.component.html',
+	styleUrls: ['./record-button.component.css']
 })
 export class RecordButtonComponent implements OnInit {
 
-    @Input() currentChat: User | Group;
-    private mediaRecorder;
-    private audioURL = "";
-    private chunks = [];
-		private canRecord = false;
+	@Input() currentChat: User | Group;
+	private mediaRecorder;
+	private audioURL = "";
+	private chunks = [];
+	private canRecord = false;
 
-    constructor(private sockser: SocketService, private internalService: InternalService) {
-    }
+	constructor(private sockser: SocketService, private internalService: InternalService) {
+	}
 
-    ngOnInit() {
+	ngOnInit() {
+	}
 
-    }
+	record(){
+		if (this.canRecord){
+			this.mediaRecorder.start();
+			console.log("Recording...");
 
-    record(){
-				if (this.canRecord){
-					this.mediaRecorder.start();
-	        console.log(this.mediaRecorder.state);
-	        console.log("recorder started");
+			this.chunks = [];
 
-	        this.chunks = [];
+			this.mediaRecorder.ondataavailable = (e) => {
+				this.chunks.push(e.data);
+			}
+		} else {
+			navigator.mediaDevices.getUserMedia({ audio: true, video: false})
+			.then((stream) => {
+				this.mediaRecorder = new MediaRecorder(stream);
+				this.canRecord = true;
+			})
+			.catch(function(err) {
+				console.log("No tenés para grabar audio :(");
+				console.log(err.message);
+			});
+		}
+	}
 
-	        this.mediaRecorder.ondataavailable = (e) => {
-	          this.chunks.push(e.data);
-	        }
-				} else {
-					navigator.mediaDevices.getUserMedia({ audio: true, video: false})
-	          .then((stream) => {
-	            this.mediaRecorder = new MediaRecorder(stream);
-							this.canRecord = true;
-	          })
-	          .catch(function(err) {
-	            console.log("No tenés para grabar audio :(");
-	            console.log(err.message);
-	          });
-				}
-    }
+	stop(){
+		this.mediaRecorder.stop();
+		console.log(this.mediaRecorder.state);
 
-    stop(){
-        this.mediaRecorder.stop();
-        console.log(this.mediaRecorder.state);
-        console.log("recorder stopped");
-        this.mediaRecorder.onstop = (e) => {
-            var blob = new Blob(this.chunks, { 'type' : 'audio/ogg; codecs=opus' });
-            this.chunks = [];
-            let file = this.blobToFile(blob, "archivo");
+		this.mediaRecorder.onstop = (e) => {
+			var blob = new Blob(this.chunks, { 'type' : 'audio/ogg; codecs=opus' });
+			this.chunks = [];
+			let file = this.blobToFile(blob, "archivo");
 
-            let reader = new FileReader();
+			let reader = new FileReader();
 			console.log("Loading file...");
 
 			reader.onerror = err => {console.log("Error: failed to load file "+ err)};
 			reader.onabort = err => {console.log("Loading aborted " + err)};
 			reader.onload = () => {
-                console.log("Sending file!");
-                let msg = {
-                    senderid: this.sockser.getMyUser().id,
-                    senderNick: this.sockser.getMyUser().nick,
-                    receiverid: this.currentChat.id,
-                    content: reader.result,
-                    type: "audio"
-                }
-                this.sockser.sendMessage(msg);
+				console.log("Sending file!");
+				let msg = {
+					senderid: this.sockser.getMyUser().id,
+					senderNick: this.sockser.getMyUser().nick,
+					receiverid: this.currentChat.id,
+					content: reader.result,
+					type: "audio"
+				}
+				this.sockser.sendMessage(msg);
 
-                // FIXME: hack para saber si es un User. Buscar otra forma
+				// Si es un chat privado, el mensaje se agrega manualmente
 				if ('nick' in this.currentChat && (this.sockser.getMyUser().id != this.currentChat.id)){
 					this.internalService.addMessage(msg);
 				}
-            };
+			};
 			reader.onloadend = () => {console.log("File loaded!")};
 
 			reader.readAsDataURL(file);
-        }
-    }
+		}
+	}
 
-    blobToFile(theBlob: Blob, fileName:string): File {
-        var b: any = theBlob;
-        //A Blob() is almost a File() - it's just missing the two properties below which we will add
-        b.lastModifiedDate = new Date();
-        b.name = fileName;
+	blobToFile(theBlob: Blob, fileName:string): File {
+		var b: any = theBlob;
+		// Un Blob es casi un File, pero se le agregan estas dos propiedades
+		b.lastModifiedDate = new Date();
+		b.name = fileName;
 
-        //Cast to a File() type
-        return <File>theBlob;
-    }
+		//Cast a tipo File
+		return <File>theBlob;
+	}
 
 }

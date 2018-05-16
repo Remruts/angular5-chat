@@ -18,8 +18,6 @@ import { ChatRoomComponent } from './chat/chat-room/chat-room.component';
 import { ChatViewComponent } from './chat/chat-room/chat-view/chat-view.component';
 import { MessageComponent } from './chat/chat-room/message/message.component';
 import { MessageToolbarComponent } from './chat/chat-room/message-toolbar/message-toolbar.component';
-import { AddImageButtonComponent } from './chat/chat-room/message-toolbar/add-image-button/add-image-button.component';
-import { SendAudioButtonComponent } from './chat/chat-room/message-toolbar/send-audio-button/send-audio-button.component';
 import { RecordButtonComponent } from './chat/chat-room/message-toolbar/record-button/record-button.component';
 import { SendButtonComponent } from './chat/chat-room/message-toolbar/send-button/send-button.component';
 import { SendFileComponent } from './chat/chat-room/message-toolbar/send-file/send-file.component';
@@ -39,8 +37,6 @@ import { NewGroupComponent } from './chat/sidebar/new-group/new-group.component'
     ChatViewComponent,
     MessageComponent,
     MessageToolbarComponent,
-    AddImageButtonComponent,
-    SendAudioButtonComponent,
     RecordButtonComponent,
     SendButtonComponent,
     SendFileComponent,
